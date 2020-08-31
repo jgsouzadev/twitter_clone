@@ -62,6 +62,12 @@ class Route extends Bootstrap  {
             'action' => 'acao'
         );
 
+        $routes['remover'] = array (
+            'route' => '/remover',
+            'controller' => 'AppController',
+            'action' => 'remover'
+        );
+
 
         
         $this->setRoutes($routes);

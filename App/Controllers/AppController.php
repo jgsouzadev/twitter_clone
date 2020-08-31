@@ -42,9 +42,9 @@ class AppController extends Action {
             $tweet->__set("id_usuario", $_SESSION['id']);
 
             if($tweet->salvar()) {
-             header("Location: /timeline");   
-            } else {
              header("Location: /timeline?erro");   
+            } else {
+             header("Location: /timeline?tweet");   
             }
             
         
@@ -93,6 +93,17 @@ class AppController extends Action {
 
 
 
+    }
+
+    public function remover() {
+        $this->validarSessao();
+        $id = $_POST['id_post'];
+        $tweet = Container::getModel("Tweet");
+        if($tweet->removerTweet($_SESSION['id'], $id)) {
+            header("Location: /timeline?sucessoAoRemover");
+        } else {
+            header("Location: /timeline?erroAoRemover");
+        };
     }
 }
 
